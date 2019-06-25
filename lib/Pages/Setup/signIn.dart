@@ -97,6 +97,9 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                             if(input.isEmpty ){
                               return 'Please type in a password';
                             }
+                            else if (input.length<6){
+                              return "Password has to be 6 characters long";
+                            }
                           },
                           onSaved: (input) => _password = input,
                           decoration: InputDecoration(
@@ -147,9 +150,36 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
       }
       catch(e){
-        print(e.message);
+        return _ackAlert(context);
       }
     }
   }
 }
 
+Future<void> _ackAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: const Text('Username/Password is incorrect',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontStyle: FontStyle.italic,
+        ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok',
+            style: TextStyle(
+              color: Colors.black87,
+            ),),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
