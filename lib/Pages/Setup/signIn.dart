@@ -34,58 +34,106 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign in to CredShare'),
-        backgroundColor: Colors.indigo,
-      ),
-      body: Form(
-        key: _formKey,
+      backgroundColor: Colors.white,
+      body: new Stack(
+        fit:StackFit.expand,
+        children: <Widget>[
+          new Image(
+            image: new AssetImage("assets/login.jpg"),
+            fit: BoxFit.cover,
+          ),
 
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              validator: (input) {
-                if(input.isEmpty){
-                  return 'Please type an email';
-                }
-              },
-              onSaved: (input) => _email = input,
-              decoration: InputDecoration(
-                labelText: 'Email'
-              ),
-            ),
-            TextFormField(
-              validator: (input) {
-                if(input.length < 6){
-                  return 'Your password needs to be at least 6 characters';
-                }
-              },
-              onSaved: (input) => _password = input,
-              decoration: InputDecoration(
-                  labelText: 'Password'
-              ),
-              obscureText: true,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top:20.0),
-            ),
-            RaisedButton(
-              color:Colors.indigo,
-              textColor:Colors.white,
-              onPressed: signIn,
-              child: Text('Sign In'),
-            ),
-            Image(
-              image: AssetImage("assets/login.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
+         Center(
+           child: SingleChildScrollView(
+             child: Container(
+               width:400,
+               height:400,
+               child: new Column(
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: <Widget>[
+                   new Icon(
+                     Icons.account_circle,
+                     color: Colors.white70,
+                     size: _iconAnimation.value *100,
+                   ),
 
+                  Form(
+                  key: _formKey,
+                  child: new Theme(
+                    data: new ThemeData(
+                        brightness: Brightness.dark,
+                        primarySwatch: Colors.blueGrey,
+                        inputDecorationTheme: new InputDecorationTheme(
+                            labelStyle: new TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w700
+                            )
+                        )
+                    ),
+                    child: Column(
+                      crossAxisAlignment:CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        TextFormField(
+                          validator: (input) {
+                            if(input.isEmpty){
+                              return 'Please type in an username';
+                            }
+                          },
+                          onSaved: (input) => _email = input,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0),),
+                              hintText: 'Username',
+                          ),
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.white,
+                          ),
+                        ),
+                        SizedBox (height: 5.0),
+                        TextFormField(
+                          validator: (input) {
+                            if(input.isEmpty ){
+                              return 'Please type in a password';
+                            }
+                          },
+                          onSaved: (input) => _password = input,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+                              hintText: 'Password'
+                          ),
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.white70,
+                          ),
+                          obscureText: true,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top:20.0),
+                        ),
+                        RaisedButton(
+                          color:Colors.indigo,
+                          textColor:Colors.white,
+                          onPressed: signIn,
+                          child: Text('Sign In'),
+                        ),
+
+                      ],
+                    ),
+                  ),
+
+                    ),
+                    ]
+               ),
+             ),
+           ),
+         ),
+
+        ],
       ),
     );
   }
-
 
   Future<void> signIn() async {
     final formState = _formKey.currentState;
@@ -97,9 +145,11 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
         //TODO: Navigate to home
 
-      }catch(e){
+      }
+      catch(e){
         print(e.message);
       }
     }
   }
 }
+
