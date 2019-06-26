@@ -17,10 +17,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text('Welcome ${widget.user.email}')
-      ),
+
       body: MainContent(),
     );
   }
@@ -57,7 +54,7 @@ class MainContent extends StatelessWidget {
                                 color: Color(0xff2d386b),
                                 size: 40.0,
                               ),
-                              onPressed: () {}
+                              onPressed: () {Navigator.of(context).pushNamed('/SharingPage');}
                           ),
                           new Text("Share", style: new TextStyle(
                               color: Color(0xff2d386b),
