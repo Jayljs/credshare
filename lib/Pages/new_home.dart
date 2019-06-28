@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/Setup/signIn.dart';
-import 'package:credshare/Pages/share.dart';
+import 'package:credshare/Pages/main_share.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                                       color: Color(0xff2d386b),
                                       size: 40.0,
                                     ),
-                                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SharingPage(user: user), fullscreenDialog: true));}
+                                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => MainShare(user: user), fullscreenDialog: true));}
                                 ),
                                 new Text("Share", style: new TextStyle(
                                     color: Color(0xff2d386b),

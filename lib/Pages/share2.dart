@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/new_home.dart';
 
 
-class SharingPage extends StatelessWidget{
-  const SharingPage({
+class SharingPage2 extends StatelessWidget{
+  const SharingPage2 ({
     Key key,
     @required this.user
   }): super(key: key);
@@ -30,8 +30,8 @@ class SharingPage extends StatelessWidget{
               ),
             )
         ),
-      body:Stack(
-        fit: StackFit.expand,
+        body:Stack(
+          fit: StackFit.expand,
           children: <Widget>[
             new Image(
               image: new AssetImage("assets/homes.png"),
@@ -39,16 +39,16 @@ class SharingPage extends StatelessWidget{
             ),
             Center(
               child: StreamBuilder(
-            stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
-            builder: (context,snapshot) {
-              if (!snapshot.hasData)
-                return Text('Loading data... Please Wait...');
-              return new Content();
-            },
-            ),
+                stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
+                builder: (context,snapshot) {
+                  if (!snapshot.hasData)
+                    return Text('Loading data... Please Wait...');
+                  return new Content();
+                },
+              ),
             )
           ] ,
-      )
+        )
     );
   }
 }
@@ -65,11 +65,11 @@ class Content extends StatelessWidget {
               SizedBox(height:10.0),
               new TextFormField(
                 decoration: new InputDecoration(
-                  hintText: "Number of credits (max:3)"
+                    hintText: "Number of credits (max:3)"
                 ),
                 style: TextStyle(fontSize: 15.0,
-                fontStyle: FontStyle.italic,
-                color: Color(0xff2d386b)),
+                    fontStyle: FontStyle.italic,
+                    color: Color(0xff2d386b)),
               ),
               SizedBox(height:10.0),
               new TextFormField(
@@ -93,4 +93,3 @@ class Content extends StatelessWidget {
     );
   }
 }
-
