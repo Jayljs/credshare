@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:credshare/Pages/home.dart';
+import 'package:credshare/Pages/new_home.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation ;
 
-  String _email, _password;
+  String _email, _password,_uid;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
 
@@ -145,7 +145,6 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
         Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user: user), fullscreenDialog: true));
-
         //TODO: Navigate to home
 
       }

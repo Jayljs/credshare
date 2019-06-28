@@ -38,7 +38,7 @@ class Content extends StatelessWidget {
     // TODO: implement build
     return new ListView(
       children: <Widget>[
-        new Container(
+        new Form(
           child: new Column(
             children: <Widget>[
               SizedBox(height:10.0),
@@ -50,6 +50,7 @@ class Content extends StatelessWidget {
                 fontStyle: FontStyle.italic,
                 color: Color(0xff2d386b)),
               ),
+              SizedBox(height:10.0),
               new TextFormField(
                 decoration: new InputDecoration(
                     hintText: "Receiver"
