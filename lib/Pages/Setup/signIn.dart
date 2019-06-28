@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   AnimationController _iconAnimationController;
   Animation<double> _iconAnimation ;
 
-  String _email, _password,_uid;
+  String _email, _password;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
 

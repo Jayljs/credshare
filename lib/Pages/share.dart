@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:credshare/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:credshare/Pages/new_home.dart';
 
 
-class SharingPage extends StatefulWidget{
+class SharingPage extends StatelessWidget{
+  const SharingPage({
+    Key key,
+    @required this.user
+  }): super(key: key);
+  final FirebaseUser user;
   @override
-State createState() => new SharingPageState();
-}
 
-class SharingPageState extends State<SharingPage> {
-  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
@@ -27,7 +30,25 @@ class SharingPageState extends State<SharingPage> {
           ),
         )
       ),
-      body:new Content(),
+      body:Stack(
+        fit: StackFit.expand,
+          children: <Widget>[
+            new Image(
+              image: new AssetImage("assets/share page.jpg"),
+              fit: BoxFit.cover,
+            ),
+            Center(
+            child: StreamBuilder(
+            stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
+            builder: (context,snapshot) {
+              if (!snapshot.hasData)
+                return Text('Loading data... Please Wait...');
+              return new Content();
+            },
+            ),
+            )
+          ] ,
+      )
     );
   }
 }
