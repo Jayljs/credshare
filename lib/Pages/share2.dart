@@ -42,7 +42,7 @@ class SharingPage2 extends StatelessWidget{
                 stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
                 builder: (context,snapshot) {
                   if (!snapshot.hasData)
-                    return Text('Loading data... Please Wait...');
+                    return Center(child: Text ('Loading data... Please Wait...',style: TextStyle(fontStyle: FontStyle.italic,color: Color(0xff2d386b)),));
                   return new Content();
                 },
               ),
@@ -57,9 +57,12 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    String _number,_receive;
     return new ListView(
       children: <Widget>[
+        SizedBox(height:110),
         new Form(
+
           child: new Column(
             children: <Widget>[
               SizedBox(height:10.0),

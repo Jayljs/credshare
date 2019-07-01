@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/Setup/signIn.dart';
 import 'package:credshare/Pages/main_share.dart';
+import 'package:credshare/Pages/all_recent.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -25,7 +26,8 @@ class Home extends StatelessWidget {
        StreamBuilder(
         stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
         builder: (context,snapshot){
-          if (!snapshot.hasData) return Text ('Loading data... Please Wait...');
+          if (!snapshot.hasData)
+            return Center(child: Text ('Loading data... Please Wait...',style: TextStyle(fontStyle: FontStyle.italic,color: Color(0xff2d386b)),));
           return new ListView(
             children: <Widget>[
               new Container(
@@ -152,100 +154,98 @@ class Home extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 30.0),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: new Text ("Recent Transactions",
-                              style: new TextStyle(color: Color(0xff2d386b),
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500))
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: new Text ("Recent Transactions",
+                                    style: new TextStyle(color: Color(0xff2d386b),
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w500))
+                            ),
+                            Align(
+                              alignment:Alignment.topRight,
+                              child: GestureDetector(
+                                  child: Text("See all >",
+                                    style: TextStyle(fontSize: 14.0,
+                                      color: Color(0xff2d386b),
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                               onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => RecentPage(user: user), fullscreenDialog: true));})
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height:10),
+                      new Container(
+                        height: 200,
+                        decoration: new BoxDecoration(
+                            color: Colors.transparent
+                        ),
+                        child: ListView.builder(
+                          itemBuilder: (context, position) {
+                            return Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.all(2),
+                                          child: Text(
+                                            snapshot.data["recent_transactions_name"][position].toString(),
+                                            style: TextStyle(
+                                                fontSize: 14.0, fontWeight: FontWeight.bold,color: Colors.white),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Text(
+                                            snapshot.data["recent_transactions_date"][position].toString(),
+                                            style: TextStyle(fontSize: 12.0,color: Colors.white),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Text(
+                                            snapshot.data["recent_transactions_credits"][position].toString(),
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Divider(
+                                  height: 2.0,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(height:13)
+                              ],
+                            );
+                          },
+                          itemCount: (snapshot.data["recent_transactions_name"].length >5)? 5: snapshot.data["recent_transactions_name"].length
+                        ),
+
                       )
                     ],
                   )
               ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: new Container(
-                  decoration: new BoxDecoration(
-                      color: Colors.transparent
-                  ),
-                  child: DataTable(
-                    columns: <DataColumn>[
-                      DataColumn(
-                        label: Text('')
-                      ),
-                      DataColumn(
-                        label: Text('')
-                      ),
-                      DataColumn(
-                        label:Text('')
-                      )
-                    ],
-                      rows: <DataRow> [
-                        DataRow(
-                          cells:<DataCell> [
-                            DataCell(
-                              Text(snapshot.data['recent_transactions_name'][0].toString(),
-                                style: TextStyle(color: Colors.white,fontSize:12.0,),
-                              ),
-                            ),
-                            DataCell(
-                              Text(snapshot.data['recent_transactions_credits'][0].toString(),
-                                style: TextStyle(color: Colors.white,fontSize:12.0,)
-                              ),
-                            ),
-                            DataCell(
-                              Text(snapshot.data['recent_transactions_date'][0].toString(),
-                                  style: TextStyle(color: Colors.white,fontSize:12.0,))
-                            )
-                          ]
-                        ),
-                        DataRow(
-                            cells:<DataCell> [
-                              DataCell(
-                                Text(snapshot.data['recent_transactions_name'][1].toString(),
-                                  style: TextStyle(color: Colors.white,fontSize:12.0,),
-                                ),
-                              ),
-                              DataCell(
-                                Text(snapshot.data['recent_transactions_credits'][1].toString(),
-                                    style: TextStyle(color: Colors.white,fontSize:12.0,)
-                                ),
-                              ),
-                              DataCell(
-                                  Text(snapshot.data['recent_transactions_date'][1].toString(),
-                                      style: TextStyle(color: Colors.white,fontSize:12.0,))
-                              )
-                            ]
-                        ),
-                        DataRow(
-                            cells:<DataCell> [
-                              DataCell(
-                                Text(snapshot.data['recent_transactions_name'][2].toString(),
-                                  style: TextStyle(color: Colors.white,fontSize:12.0,),
-                                ),
-                              ),
-                              DataCell(
-                                Text(snapshot.data['recent_transactions_credits'][2].toString(),
-                                    style: TextStyle(color: Colors.white,fontSize:12.0,)
-                                ),
-                              ),
-                              DataCell(
-                                  Text(snapshot.data['recent_transactions_date'][2].toString(),
-                                      style: TextStyle(color: Colors.white,fontSize:12.0,))
-                              )
-                            ]
-                        )
-
-                      ],
-                  ),
-                  
-                ),
-              )
             ],
           );
         },
       ),
     ],
     ),
-  );}
+  );
+  }
+
 }

@@ -17,14 +17,14 @@ class SharingPage extends StatelessWidget{
     return new Scaffold(
         appBar: AppBar(
             iconTheme: IconThemeData(
-                color:Colors.blueGrey
+                color:Color(0xff2d386b)
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey,
             title: Align(
               alignment: Alignment(-0.3,0),
               child: Text ('Share',
                 style: TextStyle(fontStyle: FontStyle.italic,
-                    color: Colors.blueGrey,
+                    color: Color(0xff2d386b),
                     fontSize: 20.0
                 ),
               ),
@@ -42,7 +42,7 @@ class SharingPage extends StatelessWidget{
             stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
             builder: (context,snapshot) {
               if (!snapshot.hasData)
-                return Text('Loading data... Please Wait...');
+                return Center(child: Text ('Loading data... Please Wait...',style: TextStyle(fontStyle: FontStyle.italic,color: Color(0xff2d386b)),));
               return new Content();
             },
             ),
@@ -57,13 +57,24 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    String _number,_receive;
     return new ListView(
       children: <Widget>[
+        SizedBox(height:20),
         new Form(
           child: new Column(
             children: <Widget>[
-              SizedBox(height:10.0),
+              SizedBox(height:110),
               new TextFormField(
+                validator: (input) {
+                  if(input.isEmpty){
+                    return 'Please key in a number';
+                  }
+                  else if (input.runtimeType != int){
+                    return "Please key in an integer";
+                  }
+                },
+                onSaved: (input) => _number = input,
                 decoration: new InputDecoration(
                   hintText: "Number of credits (max:3)"
                 ),
@@ -92,5 +103,6 @@ class Content extends StatelessWidget {
       ],
     );
   }
+
 }
 

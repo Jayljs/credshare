@@ -25,7 +25,8 @@ class MainShare extends StatelessWidget {
           ),
             StreamBuilder( stream:Firestore.instance.collection("users").document(user.uid).snapshots(),
     builder: (context,snapshot) {
-      if (!snapshot.hasData) return Text('Loading data... Please Wait...');
+      if (!snapshot.hasData)
+        return Center(child: Text ('Loading data... Please Wait...',style: TextStyle(fontStyle: FontStyle.italic,color: Color(0xff2d386b)),));
       return new ListView(
         children: <Widget>[
           SizedBox(height:200),
