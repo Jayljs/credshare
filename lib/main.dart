@@ -11,6 +11,7 @@ class CredShare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'CredShare',
       home: LoginPage(),
       routes: <String, WidgetBuilder> {

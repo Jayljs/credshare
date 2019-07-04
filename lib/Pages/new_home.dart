@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:credshare/Pages/Setup/signIn.dart';
-import 'package:credshare/Pages/main_share.dart';
 import 'package:credshare/Pages/all_recent.dart';
+import 'package:credshare/Pages/main_expiry.dart';
+import 'package:credshare/Pages/main_share.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -88,7 +88,7 @@ class Home extends StatelessWidget {
                                       color: Color(0xff2d386b),
                                       size: 40.0,
                                     ),
-                                    onPressed: () {}
+                                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => MainExpiry(user: user), fullscreenDialog: true));}
                                 ),
                                 new Text("Expiry", style: new TextStyle(
                                     color: Color(0xff2d386b),
@@ -104,9 +104,10 @@ class Home extends StatelessWidget {
                       ),
                       SizedBox(height: 10.0),
                       new Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           new Container(
-                            height: 60.0,
+                            height: 100.0,
                             decoration: new BoxDecoration(
                                 color: Colors.transparent
                             ),
@@ -119,7 +120,7 @@ class Home extends StatelessWidget {
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w500),),
                                   SizedBox(height: 5.0),
-                                  new Text(snapshot.data['breakfast_credits_left'].length.toString(), style: new TextStyle(
+                                  new Text(snapshot.data['breakfast_credits_left_number'].length.toString(), style: new TextStyle(
                                       color: Color(0xff2d386b),
                                       fontSize: 30.0,
                                       fontWeight: FontWeight.w700),
@@ -143,7 +144,7 @@ class Home extends StatelessWidget {
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w500)),
                                   SizedBox(height: 5.0),
-                                  new Text(snapshot.data['dinner_credits_left'].length.toString(), style: new TextStyle(
+                                  new Text(snapshot.data['dinner_credits_left_number'].length.toString(), style: new TextStyle(
                                       color: Color(0xff2d386b),
                                       fontSize: 30.0,
                                       fontWeight: FontWeight.w700)),
@@ -163,14 +164,14 @@ class Home extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: new Text ("Recent Transactions",
                                     style: new TextStyle(color: Color(0xff2d386b),
-                                        fontSize: 14.0,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.w500))
                             ),
                             Align(
                               alignment:Alignment.topRight,
                               child: GestureDetector(
                                   child: Text("See all >",
-                                    style: TextStyle(fontSize: 14.0,
+                                    style: TextStyle(fontSize: 16.0,
                                       color: Color(0xff2d386b),
                                         fontWeight: FontWeight.w500
                                     ),
@@ -182,7 +183,7 @@ class Home extends StatelessWidget {
                       ),
                       SizedBox(height:10),
                       new Container(
-                        height: 200,
+                        height: 250,
                         decoration: new BoxDecoration(
                             color: Colors.transparent
                         ),
@@ -202,7 +203,7 @@ class Home extends StatelessWidget {
                                           child: Text(
                                             snapshot.data["recent_transactions_name"][position].toString(),
                                             style: TextStyle(
-                                                fontSize: 14.0, fontWeight: FontWeight.bold,color: Colors.white),
+                                                fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.white),
                                           ),
                                         ),
                                         Padding(

@@ -18,7 +18,7 @@ class RecentPage extends StatelessWidget {
           iconTheme: IconThemeData(
               color:Color(0xff2d386b)
           ),
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.white70,
           title: Align(
             alignment: Alignment(-0.3,0),
             child: Text ('Share',
@@ -86,7 +86,7 @@ class RecentPage extends StatelessWidget {
                             ),
                             Divider(
                               height: 2.0,
-                              color: Colors.white,
+                              color: Color(0xff2d386b),
                             ),
                             SizedBox(height:13)
                           ],
