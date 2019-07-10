@@ -107,7 +107,7 @@ class Home extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           new Container(
-                            height: 100.0,
+                            height: 58.0,
                             decoration: new BoxDecoration(
                                 color: Colors.transparent
                             ),
@@ -154,7 +154,7 @@ class Home extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30.0),
+                      SizedBox(height: 10.0),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
