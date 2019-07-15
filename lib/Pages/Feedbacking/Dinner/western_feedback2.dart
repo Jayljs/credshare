@@ -28,7 +28,7 @@ class _WesternPage2State extends State<WesternPage2> {
           new Center(
               child: ListView(
                 children: <Widget>[
-                  SizedBox(height:200),
+                  SizedBox(height:50),
                   new Form(
                     key: _formKey,
                     child:new Theme(
@@ -46,33 +46,42 @@ class _WesternPage2State extends State<WesternPage2> {
                       ) ,
                       child: Column(
                         children: <Widget>[
-                          TextFormField(
-                            validator: (input) {
-                              if(input.isEmpty){
-                                return 'Please give a rating';
-                              }else if(int.parse(input)>5){
-                                return 'Maximum is 5';
-                              }
-                            },
-                            onSaved: (input) => _stars = input,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-                            decoration: new InputDecoration(
-                                hintText: "Ratings out of 5"
+                          Container(
+                            margin: EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (input) {
+                                if(input.isEmpty){
+                                  return 'Please give a rating';
+                                }else if(int.parse(input)>5){
+                                  return 'Maximum is 5';
+                                }
+                              },
+                              onSaved: (input) => _stars = input,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                              decoration: new InputDecoration(
+                                  hintText: "Ratings out of 5"
+                              ),
                             ),
                           ),
                           SizedBox (height: 5.0),
-                          TextFormField(
-                            validator: (input){
-                              if (input.isEmpty){
-                                return 'Please give a review';
-                              }else if (input.length<40){
-                                return 'Please give a review of minimum 40 characters long';
-                              }
-                            },
-                            onSaved: (input) => _content = input,
-                            decoration: new InputDecoration(
-                              hintText: "Review Section",
+                          Container(
+                            margin: EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (input){
+                                if (input.isEmpty){
+                                  return 'Please give a review';
+                                }else if (input.length<40){
+                                  return 'Please give a review of minimum 40 characters long';
+                                }
+                              },
+                              onSaved: (input) => _content = input,
+                              decoration: new InputDecoration(
+                                hintText: "Review Section",
+                                border: OutlineInputBorder(),
+                              ),
+                              maxLines: 14,
+                              textInputAction: TextInputAction.go,
                             ),
                           ),
                           Padding(
