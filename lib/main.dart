@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:credshare/Pages/Setup/signIn.dart';
-import 'package:credshare/Pages/share.dart';
+import 'package:credshare/Pages/Sharing/share.dart';
 
 
 void main() => runApp(CredShare());

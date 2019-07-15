@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:credshare/Pages/expiry.dart';
-import 'package:credshare/Pages/expiry2.dart';
+import 'package:credshare/Pages/Feedbacking/feedback_main.dart';
+import 'package:credshare/Pages/new_home.dart';
+import 'package:credshare/Pages/Feedbacking/feedback_main2.dart';
 
 
-class MainExpiry extends StatelessWidget {
-  const MainExpiry({
+class MainFeedback extends StatelessWidget {
+  const MainFeedback({
     Key key,
     @required this.user
   }): super(key: key);
@@ -48,7 +49,7 @@ class MainExpiry extends StatelessWidget {
                                   color: Color(0xff2d386b),
                                   size: 40.0,
                                 ),
-                                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ExpiryPage(user: user), fullscreenDialog: true));}
+                                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewPage(user: user), fullscreenDialog: true));}
                             ),
                             new Text("Breakfast", style: new TextStyle(
                                 color: Color(0xff2d386b),
@@ -64,7 +65,7 @@ class MainExpiry extends StatelessWidget {
                                   color: Color(0xff2d386b),
                                   size: 40.0,
                                 ),
-                                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => Expiry2Page(user: user), fullscreenDialog: true));}
+                                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewsPage(user:user), fullscreenDialog: true));}
                             ),
                             new Text("Dinner", style: new TextStyle(
                                 color: Color(0xff2d386b),

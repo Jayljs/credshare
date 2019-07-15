@@ -48,7 +48,8 @@ class ExpiryPage extends StatelessWidget{
                 child: ListView.builder(
                     itemBuilder: (context, position) {
                       return Column(
-                        children: [Row(
+                        children: [
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Padding(

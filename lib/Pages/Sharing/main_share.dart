@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:credshare/Pages/share.dart';
+import 'package:credshare/Pages/Sharing/share.dart';
 import 'package:credshare/Pages/new_home.dart';
-import 'package:credshare/Pages/share2.dart';
+import 'package:credshare/Pages/Sharing/share2.dart';
 
 
 class MainShare extends StatelessWidget {

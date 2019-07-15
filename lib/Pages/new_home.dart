@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/all_recent.dart';
-import 'package:credshare/Pages/main_expiry.dart';
-import 'package:credshare/Pages/main_share.dart';
+import 'package:credshare/Pages/Expire/main_expiry.dart';
+import 'package:credshare/Pages/Sharing/main_share.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:credshare/Pages/Feedbacking/main_feedback.dart';
 
 class Home extends StatelessWidget {
   const Home({
@@ -77,6 +78,24 @@ class Home extends StatelessWidget {
                                 new Text("QR Scanner", style: new TextStyle(
                                     color: Color(0xff2d386b),
                                     fontWeight: FontWeight.w500))
+                              ],
+                            ),
+                            new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                MaterialButton(
+                                  child:new Icon(
+                                    Icons.feedback,
+                                    color: Color(0xff2d386b),
+                                    size: 40.0,
+                                  ),
+                                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MainFeedback(user: user), fullscreenDialog: true));}
+                                ),
+                                new Text("Feedback",style: new TextStyle(
+                                color:  Color(0xff2d386b),
+                                    fontWeight: FontWeight.w500
+                                )
+                                )
                               ],
                             ),
                             new Column(
@@ -233,7 +252,7 @@ class Home extends StatelessWidget {
                               ],
                             );
                           },
-                          itemCount: (snapshot.data["recent_transactions_name"].length >5)? 5: snapshot.data["recent_transactions_name"].length
+                          itemCount:  (snapshot.data["recent_transactions_name"].length==null)? 0: (snapshot.data["recent_transactions_name"].length >5)? 5:snapshot.data["recent_transactions_name"].length
                         ),
 
                       )
