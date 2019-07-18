@@ -3,9 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/Feedbacking/feedback_main2.dart';
+import 'package:credshare/Pages/new_home.dart';
 
 
 class IndianPage extends StatefulWidget {
+  const IndianPage({
+    Key key,
+    @required this.user
+  }): super(key: key);
+  final FirebaseUser user;
   @override
   _IndianPageState createState() => new _IndianPageState();
 }
@@ -116,7 +122,7 @@ class _IndianPageState extends State<IndianPage> {
             .document("indian")
             .updateData({"Indian_review": FieldValue.arrayUnion([_content])});
         Navigator.push(context , MaterialPageRoute(
-            builder: (context) => ReviewsPage() , fullscreenDialog: true));
+            builder: (context) => Home(user:widget.user) , fullscreenDialog: true));
         print(_stars);
       }
       catch (e) {

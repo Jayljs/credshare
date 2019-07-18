@@ -15,7 +15,8 @@ class CredShare extends StatelessWidget {
       title: 'CredShare',
       home: LoginPage(),
       routes: <String, WidgetBuilder> {
-        "/SharingPage" : (BuildContext context) => new SharingPage(),
+        "/SharingPage" : (BuildContext context) => new SharingPage() ,
+        '/LoginPage' : (BuildContext context) => new LoginPage(),
       }
       );
   }

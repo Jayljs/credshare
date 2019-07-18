@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:credshare/Pages/new_home.dart';
 
 
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => new _LoginPageState();
@@ -144,6 +145,7 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
       formState.save();
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+
         Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user: user), fullscreenDialog: true));
         //TODO: Navigate to home
 

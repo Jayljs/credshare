@@ -47,7 +47,7 @@ class ReviewPage extends StatelessWidget{
                 child: RaisedButton(
                   color:Colors.indigo,
                   textColor:Colors.white,
-                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MalayPage(), fullscreenDialog: true));},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MalayPage(user:user), fullscreenDialog: true));},
                   child: Text('Malay'),
                 ),
               ),
@@ -56,7 +56,7 @@ class ReviewPage extends StatelessWidget{
                 child: RaisedButton(
                   color:Colors.indigo,
                   textColor:Colors.white,
-                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ChinesePage(), fullscreenDialog: true));},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ChinesePage(user: user), fullscreenDialog: true));},
                   child: Text('Chinese'),
                 ),
               ),
@@ -65,7 +65,7 @@ class ReviewPage extends StatelessWidget{
                 child: RaisedButton(
                   color:Colors.indigo,
                   textColor:Colors.white,
-                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => WesternPage(), fullscreenDialog: true));},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => WesternPage(user:user), fullscreenDialog: true));},
                   child: Text('Western'),
                 ),
               ),
@@ -74,7 +74,7 @@ class ReviewPage extends StatelessWidget{
                 child: RaisedButton(
                   color:Colors.indigo,
                   textColor:Colors.white,
-                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => VegetarianPage(), fullscreenDialog: true));},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => VegetarianPage(user:user), fullscreenDialog: true));},
                   child: Text('Vegeterian'),
                 ),
               ),
@@ -83,7 +83,7 @@ class ReviewPage extends StatelessWidget{
                 child: RaisedButton(
                   color:Colors.indigo,
                   textColor:Colors.white,
-                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => NoodlePage(), fullscreenDialog: true));},
+                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => NoodlePage(user:user), fullscreenDialog: true));},
                   child: Text('Noodle'),
                 ),
               ),

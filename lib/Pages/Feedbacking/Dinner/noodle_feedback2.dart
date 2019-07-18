@@ -3,9 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/Feedbacking/feedback_main2.dart';
+import 'package:credshare/Pages/new_home.dart';
 
 
 class NoodlePage2 extends StatefulWidget {
+  const NoodlePage2({
+    Key key,
+    @required this.user
+  }): super(key: key);
+  final FirebaseUser user;
   @override
   _NoodlePage2State createState() => new _NoodlePage2State();
 }
@@ -116,8 +122,7 @@ class _NoodlePage2State extends State<NoodlePage2> {
             .document("noodle")
             .updateData({"Noodle_review": FieldValue.arrayUnion([_content])});
         Navigator.push(context , MaterialPageRoute(
-            builder: (context) => ReviewsPage() , fullscreenDialog: true));
-        print(_stars);
+            builder: (context) => Home(user:widget.user) , fullscreenDialog: true));
       }
       catch (e) {
         print(e);

@@ -3,9 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credshare/Pages/Feedbacking/feedback_main2.dart';
+import 'package:credshare/Pages/new_home.dart';
 
 
 class MalayPage2 extends StatefulWidget {
+  const MalayPage2({
+    Key key,
+    @required this.user
+  }): super(key: key);
+  final FirebaseUser user;
   @override
   _MalayPage2State createState() => new _MalayPage2State();
 }
@@ -116,8 +122,7 @@ class _MalayPage2State extends State<MalayPage2> {
             .document("malay")
             .updateData({"Malay_review": FieldValue.arrayUnion([_content])});
         Navigator.push(context , MaterialPageRoute(
-            builder: (context) => ReviewsPage() , fullscreenDialog: true));
-        print(_stars);
+            builder: (context) => Home(user:widget.user) , fullscreenDialog: true));
       }
       catch (e) {
         print(e);
